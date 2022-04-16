@@ -25,9 +25,20 @@
           />
         </label>
       </div>
-      <button type="button" class="btn btn-primary" (click)="createProduct()">
-        Create
-      </button>
+      <div *ngIf="toEdit; else elseBlock">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateProduct(toEdit)"
+        >
+          Update
+        </button>
+      </div>
+      <ng-template #elseBlock>
+        <button type="button" class="btn btn-primary" (click)="createProduct()">
+          Create
+        </button>
+      </ng-template>
     </div>
     <div class="col-8">
       <table class="table" *ngIf="products.length > 0">
@@ -52,9 +63,23 @@
                 alt="{{ product.name }}"
               />
             </td>
-            <td><button type="button" class="btn btn-info">Update</button></td>
             <td>
-              <button type="button" class="btn btn-danger">Delete</button>
+              <button
+                type="button"
+                class="btn btn-info"
+                (click)="readProduct(product._id)"
+              >
+                Edit
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="deleteProduct(product._id)"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
