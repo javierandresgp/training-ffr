@@ -38,6 +38,7 @@ export class AppComponent {
   }
 
   readAll() {
+    this.toEdit = '';
     this.product = {
       name: '',
       price: 0,
